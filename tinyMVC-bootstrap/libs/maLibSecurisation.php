@@ -20,7 +20,6 @@ include_once "modele.php";	// Car on utilise la fonction connecterUtilisateur()
  */
 function checkUser($username,$password)
 {
-	echo $username;
 	$res = checkUserDB($username,$password);
 
 	if ($res==array()) return false; 
@@ -35,6 +34,7 @@ function checkUser($username,$password)
 	$_SESSION["password"] = $res[0]["password"];
 	$_SESSION["id_user"] = $res[0]["id_user"];
 	$_SESSION["isConnected"] = true;
+	updateStatus($res[0]["id_user"],1);
 	return true;
 	
 }
@@ -49,15 +49,14 @@ function checkUser($username,$password)
  * Elle ne fait rien si l'utilisateur est connecté, et si $urlGood est faux
  * Elle redirige vers urlGood sinon
  */
-function securiser($urlBad,$urlGood=false)
+function redirect($urlBad,$urlGood=false)
 {
-	if (! valider("connecte","SESSION")) {
-		rediriger($urlBad);
-		die("");
+	if (!secure("isConnected","SESSION")) {
+		headTo($urlBad);
 	}
 	else {
 		if ($urlGood)
-			rediriger($urlGood);
+			headTo($urlGood);
 	}
 }
 

@@ -24,6 +24,9 @@ session_start();
 		*/
 
 		// Un paramètre action a été soumis, on fait le boulot...
+		if($_SESSION != array() && getIsConnected($_SESSION["id_user"]) != $_SESSION["isConnected"]){
+			$action='Logout';
+		}	
 		switch($action)
 		{
 			
@@ -49,6 +52,11 @@ session_start();
 
 			case 'Logout' :
 				session_destroy();
+				$addArgs="?view=login&msg=".urlencode("You have been logged out.");
+			break;
+
+			case 'Search':
+
 			break;
 
 

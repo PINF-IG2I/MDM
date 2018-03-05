@@ -59,4 +59,24 @@ function checkUserDB($login,$password)
 }
 
 
+/**
+* Fonction permettant d'update l'attribut isConnected dans la table
+* $value doit valoir 0 ou 1.
+*
+*/
+function updateStatus($id,$value){
+	if(secure("isConnected","SESSION")){
+		$SQL="UPDATE users SET isConnected =$value WHERE id_user='$id'";
+		return SQLUpdate($SQL);
+	}
+}
+
+function getIsConnected($id){
+	$SQL="SELECT isConnected FROM users WHERE id_user='$id'";
+	return SQLGetChamp($SQL);
+}
+
+
+
+
 ?>
