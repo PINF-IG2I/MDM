@@ -47,18 +47,15 @@ function autoriserUtilisateur($idUser)
 	SQLUpdate($SQL);
 }
 
-function verifUserBdd($login,$passe)
+function checkUserDB($login,$password)
 {
 	// Vérifie l'identité d'un utilisateur 
 	// dont les identifiants sont passes en paramètre
 	// renvoie faux si user inconnu
 	// renvoie l'id de l'utilisateur si succès
 
-	$SQL="SELECT id FROM users WHERE pseudo='$login' AND passe='$passe'";
-
-	return SQLGetChamp($SQL);
-	// si on avait besoin de plus d'un champ
-	// on aurait du utiliser SQLSelect
+	$SQL="SELECT * FROM users WHERE last_name='$login'  AND password='$password'";
+	return parcoursRs(SQLSelect($SQL));
 }
 
 

@@ -15,7 +15,7 @@
  * @param string $type
  * @return string|boolean
  */
-function valider($nom,$type="REQUEST")
+function secure($nom,$type="REQUEST")
 {	
 	switch($type)
 	{

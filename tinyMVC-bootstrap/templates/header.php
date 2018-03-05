@@ -16,7 +16,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 <!-- **** H E A D **** -->
 <head>	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>TinyMVC ...</title>
+	<title>MDM - v1.0</title>
 	<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
 
 	<!-- Liaisons aux fichiers css de Bootstrap -->
@@ -59,7 +59,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		<?=mkHeadLink("Accueil","accueil",$view)?>
 		<?php
 		// Si l'utilisateur n'est pas connecte, on affiche un lien de connexion 
-		if (!valider("connecte","SESSION"))
+		if (!secure("connecte","SESSION"))
 			echo mkHeadLink("Se connecter","login",$view); 
 			//echo "<li><a href=\"index.php?view=login\">Se connecter</a></li>";
 		?>

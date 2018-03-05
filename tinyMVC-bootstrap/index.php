@@ -16,8 +16,8 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 
 
 	// on récupère le paramètre view éventuel 
-	$view = valider("view"); 
-	/* valider automatise le code suivant :
+	$view = secure("view"); 
+	/* secure automatise le code suivant :
 	if (isset($_GET["view"]) && $_GET["view"]!="")
 	{
 		$view = $_GET["view"]
@@ -32,7 +32,6 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 	// qui contient les balises de structure de la page, le logo, etc. 
 	// Le formulaire de recherche ainsi que le lien de connexion 
 	// si l'utilisateur n'est pas connecté 
-
 	include("templates/header.php");
 
 	// En fonction de la vue à afficher, on appelle tel ou tel template

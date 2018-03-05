@@ -21,12 +21,13 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
    	 <p class="text-muted credit">
 		<?php
 		// Si l'utilisateur est connecte, on affiche un lien de deconnexion 
-		if (valider("connecte","SESSION"))
+		if (secure("isConnected","SESSION"))
 		{
-			echo "Utilisateur <b>$_SESSION[pseudo]</b> connecté depuis <b>$_SESSION[heureConnexion]</b> &nbsp; "; 
+			echo "Utilisateur <b>$_SESSION[last_name]</b> connecté"; 
 			echo "<a href=\"controleur.php?action=Logout\">Se Déconnecter</a>";
 		}
 		?>
+		Copyright - TOPINF - IG2I
 	</p>
   </div>
 </div>

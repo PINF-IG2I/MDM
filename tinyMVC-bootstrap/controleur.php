@@ -6,9 +6,9 @@ session_start();
 	include_once "libs/maLibSecurisation.php"; 
 	include_once "libs/modele.php"; 
 
-	$addArgs = "";
+	$addArgs = ""; //this variable is used to redirect the user after the action has been treated.
 
-	if ($action = valider("action"))
+	if ($action = secure("action"))
 	{
 		ob_start ();
 		echo "Action = '$action' <br />";
@@ -29,28 +29,20 @@ session_start();
 			
 			
 			// Connexion //////////////////////////////////////////////////
-			case 'Connexion' :
+			case 'Identification' :
 				// On verifie la presence des champs login et passe
-				if ($login = valider("login"))
-				if ($passe = valider("passe"))
+				if (($username = secure("username","REQUEST")) && ($password = secure("password")))
 				{
 					// On verifie l'utilisateur, 
 					// et on crée des variables de session si tout est OK
 					// Cf. maLibSecurisation
-					if (verifUser($login,$passe)) {
+					if (checkUser($username,$password)) {
 						// tout s'est bien passé, doit-on se souvenir de la personne ? 
-						if (valider("remember")) {
-							setcookie("login",$login , time()+60*60*24*30);
-							setcookie("passe",$password, time()+60*60*24*30);
-							setcookie("remember",true, time()+60*60*24*30);
-						} else {
-							setcookie("login","", time()-3600);
-							setcookie("passe","", time()-3600);
-							setcookie("remember",false, time()-3600);
-						}
-
-					}	
+						$addArgs="?view=search";
+					}
+					else $addArgs= "?view=login&msg=".urlencode("Wrong password or username.");	
 				}
+				else $addArgs= "?view=login&msg=".urlencode("Please fill in all fields.");
 
 				// On redirigera vers la page index automatiquement
 			break;
