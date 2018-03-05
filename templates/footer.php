@@ -1,36 +1,37 @@
 <?php
-
-// Si la page est appelée directement par son adresse, on redirige en passant pas la page index
 if (basename($_SERVER["PHP_SELF"]) != "index.php")
 {
 	header("Location:../index.php");
 	die("");
 }
-
 ?>
 
-
 </div>
-<!-- fin du content --> 
+<!-- end of content --> 
 
-<!-- fin du wrap -->
+<!-- end of wrap -->
 </div>
-
-<div id="footer">
-	<div class="container">
-		<p class="text-muted credit">
-			<?php
-		// Si l'utilisateur est connecte, on affiche un lien de deconnexion 
-			if (secure("isConnected","SESSION"))
-			{
-				echo "Utilisateur <b>$_SESSION[last_name]</b> connecté"; 
-				echo "<a href=\"controleur.php?action=Logout\">Se Déconnecter</a>";
-			}
-			?>
-			Copyright - TOPINF - IG2I
-		</p>
+<footer class="panel-footer" data-color="light grey">
+	<div class="container-fluid">
+		<nav>
+			<p class="copyright text-center">
+				<?php
+				// If the user is connected, a logout link is displayed
+				if (secure("isConnected","SESSION"))
+				{
+					echo "User <b>$_SESSION[last_name]</b> is connected - \t"; 
+					echo "<a href=\"controleur.php?action=Logout\">Logout</a><br>";
+				}
+				?>
+				©
+				TOPINF - IG2I
+				<script>
+					document.write(new Date().getFullYear())
+				</script>
+			</p>
+		</nav>
 	</div>
-</div>
+</footer>
 
 </body>
 </html>
