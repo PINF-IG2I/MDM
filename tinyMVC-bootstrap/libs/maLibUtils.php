@@ -102,14 +102,14 @@ function tprint($tab)
 }
 
 
-function rediriger($url,$qs="")
+function headTo($url,$qs="")
 {
 	// if ($qs != "")	 $qs = urlencode($qs);	
 	// Il faut respecter l'encodage des caractères dans les chaînes de requêtes
 	// NB : Pose des problèmes en cas de valeurs multiples
 	// TODO: Passer un tabAsso en paramètres
 
-	if ($qs != "") $qs = "?$qs";
+	if ($qs != "") $qs = "&$qs";
  
 	header("Location:$url$qs"); // envoi par la méthode GET
 	die(""); // interrompt l'interprétation du code 

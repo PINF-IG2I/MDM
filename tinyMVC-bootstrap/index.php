@@ -12,6 +12,7 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 
 	include_once "libs/maLibUtils.php";
 	include_once "libs/maLibBootstrap.php";
+	include_once "libs/maLibSecurisation.php";
 
 
 
@@ -27,7 +28,11 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 	if (!$view) $view = "accueil"; 
 
 	// NB : il faut que view soit défini avant d'appeler l'entête
-
+	if($_SESSION != array() && getIsConnected($_SESSION["id_user"]) != $_SESSION["isConnected"]){
+		session_destroy();
+		header("Location:index.php?view=login&msg=".urlencode("You have been logged out."));
+		die("");
+	}	
 	// Dans tous les cas, on affiche l'entete, 
 	// qui contient les balises de structure de la page, le logo, etc. 
 	// Le formulaire de recherche ainsi que le lien de connexion 
@@ -38,8 +43,12 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 	switch($view)
 	{		
 
-		case "accueil" : 
-			include("templates/accueil.php");
+		case "login" : 
+			include("templates/login.php");
+		break;
+
+		case "search":
+				include("templates/search.php");
 		break;
 
 
