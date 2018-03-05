@@ -14,19 +14,19 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 
 
 if(secure("msg")){
-$msg=urldecode(secure("msg"));
-echo '<div class="alert alert-danger">
-    <button type="button" aria-hidden="true" class="close">
-    <i class="now-ui-icons ui-1_simple-remove"></i>
-    </button>
-    <span>
-    <b> Warning - </b> '.$msg.'
+  $msg=urldecode(secure("msg"));
+  echo '<br><div class="alert alert-danger">
+  <button type="button" aria-hidden="true" class="close">
+  <i class="nc-icon nc-simple-remove"></i>
+  </button>
+  <span>
+  <b> Warning - </b> '.$msg.'
   </span>
-</div>';
+  </div>';
 }
 ?>
 <div class="page-header">
-	<h1>Identification</h1>
+	<h1>Login</h1>
 </div>
 
 <p class="lead">
@@ -40,7 +40,7 @@ echo '<div class="alert alert-danger">
     <label for="pwd">Password</label>
     <input type="password" class="form-control" name="password" value=""/>
   </div>
-  <button type="submit" name="action" value="Identification" class="btn btn-default">Login</button>
+  <button type="submit" name="action" value="Identification" class="btn btn-default">Enter</button>
 </form>
 
 </p>
